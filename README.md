@@ -22,3 +22,7 @@ I hope project helps out another beginner like myself.
 ## TempConverter
 TempConverter aims to convert between Celsius and Fahrenheit. The nasm code takes two inputs. The first being the temperature, and the second is whether or not to convert to celsius or fahrenheit.
 When (c) (where c is celsius) is the input for the second prompt, then it is assumed that the initial temperature prompt's value is the temperature in fahrenheit. Then the code calculates accordingly.
+
+## Reverse command line argument
+The reverse command line argument is my first nasm project using command line arguments. run.sh is used to assemble and link the program. To run the program, type "program argv1" eg. ./reversecmdarg hello.
+The output is 'olleh' , a reverse of the command line argument.
