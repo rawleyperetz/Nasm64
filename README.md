@@ -26,3 +26,6 @@ When (c) (where c is celsius) is the input for the second prompt, then it is ass
 ## Reverse command line argument
 The reverse command line argument is my first nasm project using command line arguments. run.sh is used to assemble and link the program. To run the program, type "program argv1" eg. ./reversecmdarg hello.
 The output is 'olleh' , a reverse of the command line argument.
+
+## Stackbased
+This program aims to push (see what I did there) my understanding of stack through the polish notation. Use 'run.sh ./stackbased' to assemble and link the program and './stackbased' to run the program. If one wishes to solve (5 + 4) * 3, then one inputs, 5 4 + 3 * . A counter runs through all bytes or characters present and places them on a stack for computation. Division by zero has also been accounted for. I hope you like this project.
