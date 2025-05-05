@@ -43,3 +43,7 @@ We can simply use macros and make the call to the nasm 64 code using '%include "
 What is a palindrome? A palindrome refers to a string or a word (not meant as a discrete unit) whose reverse is the same as the word. For example, "madam" when reversed is "madam". Likewise "racecar", "rotator" But not "hello", "computer" etc. 
 The Palindrome nasm code takes the string as input, find its length, subtract two from the length (why? because of the newline and null-terminator). This length is stored in say register 'A' and register 'B' is also initialized from zero. So as 'A' decreases, 'B' increases and the corresponding stringelement should be the same. Think of it like "string[i] == string[j]" in python
 
+## Factorial
+
+## Mod
+
