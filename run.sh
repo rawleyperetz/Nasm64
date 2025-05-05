@@ -16,11 +16,15 @@ fi
 
 # Compile, assemble, and link 
 
-#nasm -f elf64 -g -Wall $1.asm 
-#ld -m elf_x86_64 -s -o $1 $1.o
+output="$(cat $1.asm | grep extern)"
+
 
 nasm -f elf64 -g -F dwarf $1.asm -o $1.o
-ld -o $1 $1.o
 
+if [[ -n $output ]]; then
+  ld $1.o -o $1 -lc -dynamic-linker /lib64/ld-linux-x86-64.so.2
+else
+  ld -o $1 $1.o
+fi
 
 chmod 744 $1
