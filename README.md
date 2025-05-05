@@ -29,3 +29,17 @@ The output is 'olleh' , a reverse of the command line argument.
 
 ## Stackbased
 This program aims to push (see what I did there) my understanding of stack through the polish notation. Use 'run.sh ./stackbased' to assemble and link the program and './stackbased' to run the program. If one wishes to solve (5 + 4) * 3, then one inputs, 5 4 + 3 * . A counter runs through all bytes or characters present and places them on a stack for computation. Division by zero has also been accounted for. I hope you like this project.
+
+## Macros
+Apparently macros make your life much easier. For example, instead of writing the following for print everytime
+mov rax, 1
+mov rdi, 1
+mov rsi, SomeVariable
+mov rdx, lengthOfSomeVariable
+syscall
+We can simply use macros and make the call to the nasm 64 code using '%include "mymacros.inc" '. Think of it like header files in C or some libraries/modules in Python that need to be called
+
+## Palindrome
+What is a palindrome? A palindrome refers to a string or a word (not meant as a discrete unit) whose reverse is the same as the word. For example, "madam" when reversed is "madam". Likewise "racecar", "rotator" But not "hello", "computer" etc. 
+The Palindrome nasm code takes the string as input, find its length, subtract two from the length (why? because of the newline and null-terminator). This length is stored in say register 'A' and register 'B' is also initialized from zero. So as 'A' decreases, 'B' increases and the corresponding stringelement should be the same. Think of it like "string[i] == string[j]" in python
+
