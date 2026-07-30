@@ -1,3 +1,5 @@
+; this program is a specialized caesar's cipher with key = 13. 
+; the program is run as follows: ./program <Text>
 
 %include "mymacros.inc"
 
@@ -13,24 +15,26 @@ section .text
 	global _start
 
 _start:
-	mov r8, [rsp]
+	mov r8, [rsp]    ; get the number of cmdline args
 
 	cmp r8, 2
 	je beginrot
 
+	; print out error msg and return 1
 	print cmdlineerror, cmdlineerrorlength
 	exit 1
 
-beginrot:
-	mov r8, [rsp + 16]
 
-	xor rcx, rcx
+beginrot:
+	mov r8, [rsp + 16]   ; move first cmdline arg into r8
+
+	xor rcx, rcx   ; rcx serves as a counter
 	jmp arglength
 
 arglength:
 	mov al, [r8 + rcx]
 
-	cmp al, 0
+	cmp al, 0     ; check if null terminator has been reached
 	je gotlength
 
 	inc rcx
@@ -50,10 +54,10 @@ asciihandle:
 	cmp rcx, r12
 	je done
 
-	cmp bl, 97
+	cmp bl, 97    ; 97 is the ascii number for 'a'
 	jge lowerascii
 
-	cmp bl, 65
+	cmp bl, 65    ; 65 is the ascii number for 'A'
 	jge capitalascii
 
 	call addchar
@@ -62,7 +66,7 @@ asciihandle:
 
 
 lowerascii:
-	cmp bl, 122
+	cmp bl, 122   ; ascii number for 'z'
 	jg otherchar
 
 	add bl, 13
