@@ -1,7 +1,9 @@
+; this program converts decimals to their hexadecimal counterparts
+; it is run using the following command: ./tohex <number>
 
 %include  "mymacros.inc"
 
-extern atoi
+extern atoi ; C function for converting string or char to int
 
 section .data
 	newline db 10
@@ -23,6 +25,7 @@ _start:
 	cmp r8, 2
 	je convertToInt
 
+	; print out error message and return with error code 1
 	print cmdlineerror, cmdlineerrorlength
 	exit 1
 
@@ -42,16 +45,16 @@ divOperation:
 	cmp r9, 16
 	jl done
 
-	shr r9, 4 ; this is division by 16
+	shr r9, 4 ; this is integer division by 16 or 2^4. this yields a quotient
 
-	imul r9, 16
-	sub r8, r9
+	imul r9, 16    ; quotient * 16
+	sub r8, r9     ; remainder = number - quotient * 16
 
 
-	cmp r8, 10
-	jge extraside
+	cmp r8, 10     ; if remainder >= 10
+	jge extraside  ; then jump to extraside so that we can use the letter 'ABCDEF' to represent remainder >= 10
 
-	;xor al, al
+	; convert integer to ascii char
 	mov al, r8b
 	add al, '0'
 	;add r9, '0'
