@@ -1,7 +1,8 @@
+; this program just checks whether a number is even or odd
 
 %include "mymacros.inc"
 
-extern atoi
+extern atoi ; C function to convert char to int
 
 section .data
 	cmderror db "Error: only one command line argument needed", 0, 10
@@ -21,8 +22,8 @@ _start:
 	cmp r8, 2
 	je convertInt
 
+	; print error msg and return 1
 	print cmderror, cmderrorlength
-
 	exit 1
 
 convertInt:
