@@ -1,7 +1,9 @@
+; this program takes a cmdline arg and converts it to a binary
+; the result is reversed
 
 %include "mymacros.inc"
 
-extern atoi
+extern atoi ; C function to convert char to int
 
 section .data
 	newline db 10
@@ -23,8 +25,8 @@ _start:
 	cmp r8, 2
 	je convertInt
 
+	; print error and return 1
 	print cmderror, cmderrorlength
-
 	exit 1
 
 convertInt:
@@ -38,12 +40,12 @@ checkoddEven:
 	test r8, 1
 	jz yesEven
 
-	mov byte [output + rcx], 49
+	mov byte [output + rcx], 49 ; 49 is ascii number for '1'
 	inc rcx
 	jmp multiplying
 
 yesEven:
-	mov byte [output + rcx], 48
+	mov byte [output + rcx], 48 ; 48 is ascii number for '0'
 	inc rcx
 	jmp multiplying
 
