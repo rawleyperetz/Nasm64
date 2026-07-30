@@ -1,4 +1,5 @@
-; this code prints the uptime since boot
+; this code prints the uptime and idle time since boot by reading one character at a time
+; this information is found in the /proc/uptime file in linux
 
 %include "mymacros.inc"
 
@@ -60,9 +61,10 @@ read_file:
 	xor r8, r8
 
 getUptime:
-	mov al, byte [allchars + r8]
+	mov al, byte [allchars + r8]     ; similar to allchars[i] where i is r8
 	mov byte [uptime_var + r8], al
 
+	; check if you have reached a space char
 	cmp al, 32
 	je printUptime
 
@@ -80,6 +82,7 @@ getIdle:
 	mov al, byte [allchars + r8]
 	mov byte [idleTime_var + r8], al
 
+	; check if you have reached a space char
 	cmp al, 0x20
 	je printIdle
 
