@@ -20,10 +20,12 @@ section .text
 ;-------------------------
 ; Factorial function
 ;------------------------
+; follows the usual factorial algo. multiply numbers until some n where n is stored in rdi
+
 factorial:
 	cmp rdi, 0
-	jl .negValue
-	je .exactlyZero
+	jl .negValue     ; negative input check
+	je .exactlyZero  ; zero input check
 
 	mov rax, 1
 	mov rcx, 1
@@ -52,11 +54,12 @@ factorial:
 
 
 _start:
-	mov r8, [rsp]
+	mov r8, [rsp]   ; get argc
 
 	cmp r8, 2
 	je computeFactorial
 
+	; print error and return 1
 	print error, errorlength
 	exit 1
 
@@ -68,6 +71,6 @@ computeFactorial:
 	call factorial
 	mov [result], rax
 
-	print_num output, qword [result]
-	print newline, 1
-	exit 0
+	print_num output, qword [result]  ; print output to stdout
+	print newline, 1   ; add a newline char for pretty printing
+	exit 0   ; exit gracefully
