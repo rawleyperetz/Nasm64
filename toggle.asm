@@ -1,4 +1,5 @@
 ; This code toggles alphabetic characters using nasm x64
+; that is to say, entering "HaMoYo" returns "hAmOyO"
 
 section .data
     prompt db "Enter string here: ", 0
@@ -38,13 +39,13 @@ main:
 _stringTraversal:
     movzx rbx, byte [inputString + r8]
     
-    cmp rbx, 97
+    cmp rbx, 97    ; 97 is ascii number for 'a'
     jge toBig
     
-    cmp rbx, 65
+    cmp rbx, 65    ; 65 is ascii number for 'A'
     jge toSmall
     
-    cmp rbx, 10
+    cmp rbx, 10    ; check if newline char has been reached. if reached end 
     je _amEnde
     
     ; Writing to screen
@@ -60,10 +61,10 @@ _stringTraversal:
     
 
 toBig:
-    cmp rbx, 122
-    jg nextCharacter
+    cmp rbx, 122     ; 122 is ascii number for 'z'
+    jg nextCharacter ; if greater than 'z' ignore and go to the next character
     
-    sub rbx, 32
+    sub rbx, 32      ; otherwise subtract 32
     
     ; Write upperCase to Screen
     mov rax, 1
@@ -78,7 +79,7 @@ toBig:
     
 
 toSmall:
-    cmp rbx, 90
+    cmp rbx, 90    ; 90 is the ascii number for 'Z'
     jg nextCharacter
     
     add rbx, 32
@@ -114,7 +115,7 @@ _amEnde:
 _exit:
     ; Exit
     mov rax, 60
-    xor rdi, rdi
+    xor rdi, rdi  ; exit with error code of 0
     syscall
     
     
